@@ -8,13 +8,12 @@ public class Word {
     private String English;
     private String Russian;
 
-    //Constructors
-    Word(Language language, String value) {
-        switch (language){
-            case English -> this.English=value;
-            case Russian -> this.Russian=value;
-        }
-    }
+//    Word(Language language, String value) {
+//        switch (language){
+//            case English -> this.English=value;
+//            case Russian -> this.Russian=value;
+//        }
+//    }
 
     public Word(String english, String russian) {
         English = english;
@@ -27,7 +26,8 @@ public class Word {
             case Russian -> Russian;
         };
     }
-    public String[] getValues(){
+
+    public String[] getValues() {
         return new String[]{English, Russian};
     }
 }
