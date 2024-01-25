@@ -15,7 +15,7 @@ public class DictionaryTest {
     Word notContainedWord = new Word("Holocaust", "Холокост");
     String filePath = "data.json";
 
-    @Test(testName = "Добавление слова в словарь", priority = 0)
+    @Test(testName = "Добавление слова в словарь")
     public void addWordTest() {
         dict.addWord(word);
     }
@@ -44,12 +44,12 @@ public class DictionaryTest {
     @Test(testName = "Удаление слова, содержащегося в словаре по значению", priority = 5, expectedExceptions = {NoSuchElementException.class})
     public void removeContainedWordByValueTest(){
         addWordTest();
-        dict.removeWord(word.getValue(Language.English), Language.English);
+        dict.removeWord(word.getValue(Language.English));
         dict.getWord(word.getValue(Language.English));
     }
     @Test(testName = "Удаление слова, не содержащегося в словаре по значению", priority = 6, expectedExceptions = {NoSuchElementException.class})
     public void removeNotContainedWordByValueTest(){
-        dict.removeWord(notContainedWord.getValue(Language.English), Language.English);
+        dict.removeWord(notContainedWord.getValue(Language.English));
     }
 
     @Test(testName = "Сохранение данных в файл", priority = 7)

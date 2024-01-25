@@ -1,13 +1,7 @@
 package ru.s1aud_dw;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,8 +29,7 @@ public class Dictionary extends ArrayList<Word> {
             throw new NoSuchElementException();
         }
     }
-
-    public void removeWord(String word, Language language) {
+    public void removeWord(String word) {
         Word wordObj = this.getWord(word);
         this.removeWord(wordObj);
     }
