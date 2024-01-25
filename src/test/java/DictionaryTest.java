@@ -3,15 +3,17 @@ import ru.s1aud_dw.Dictionary;
 import ru.s1aud_dw.Language;
 import ru.s1aud_dw.Word;
 
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.*;
 
 
 public class DictionaryTest {
     Dictionary dict = new Dictionary();
     Word word = new Word("Hitler", "Гитлер");
     Word notContainedWord = new Word("Holocaust", "Холокост");
+    String filePath = "data.json";
 
     @Test(testName = "Добавление слова в словарь", priority = 0)
     public void addWordTest() {
@@ -49,5 +51,17 @@ public class DictionaryTest {
     public void removeNotContainedWordByValueTest(){
         addWordTest();
         dict.removeWord(notContainedWord.getValue(Language.English), Language.English);
+    }
+
+    @Test(testName = "Сохранение данных в файл", priority = 7)
+    public void saveToFileTest() throws IOException {
+        addWordTest();
+        dict.saveToFile(filePath);
+    }
+    @Test(testName = "Загрузка данных из файла", priority = 8)
+    public void loadFromFileTest() throws IOException {
+        addWordTest();
+        Dictionary loadedDict = Dictionary.loadFromFile(filePath);
+        assertEquals(loadedDict.toString(), dict.toString());
     }
 }

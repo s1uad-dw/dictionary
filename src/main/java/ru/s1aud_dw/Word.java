@@ -1,33 +1,33 @@
 package ru.s1aud_dw;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 public class Word {
-    private String English;
-    private String Russian;
+    private String english;
+    private String russian;
 
-//    Word(Language language, String value) {
-//        switch (language){
-//            case English -> this.English=value;
-//            case Russian -> this.Russian=value;
-//        }
-//    }
-
+    public Word() {}
     public Word(String english, String russian) {
-        English = english;
-        Russian = russian;
+        this.english = english;
+        this.russian = russian;
     }
-
+    @JsonIgnore
     public String getValue(Language language) {
         return switch (language) {
-            case English -> English;
-            case Russian -> Russian;
+            case English -> english;
+            case Russian -> russian;
         };
     }
-
+    @JsonIgnore
     public String[] getValues() {
-        return new String[]{English, Russian};
+        return new String[]{english, russian};
+    }
+
+    @Override
+    public String toString(){
+        return english + " = " + russian;
     }
 }
