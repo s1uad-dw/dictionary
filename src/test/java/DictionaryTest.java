@@ -22,18 +22,18 @@ public class DictionaryTest {
 
     @Test(testName = "Получение слова, содержащегося в словаре", priority = 1)
     public void getContainedWordTest() {
-        assertEquals(word, dict.getWord("Hitler", Language.English));
+        assertEquals(word, dict.getWord("Hitler"));
     }
 
     @Test(testName = "Получение слова, не содержащегося в словаре", priority = 2, expectedExceptions = {NoSuchElementException.class})
     public void getNotContainedWordTest() {
-        dict.getWord(notContainedWord.getValue(Language.English), Language.English);
+        dict.getWord(notContainedWord.getValue(Language.English));
     }
 
     @Test(testName = "Удаление слова, содержащегося в словаре", priority = 3, expectedExceptions = {NoSuchElementException.class})
     public void removeContainedWordTest(){
         dict.removeWord(word);
-        dict.getWord(word.getValue(Language.English), Language.English);
+        dict.getWord(word.getValue(Language.English));
     }
 
     @Test(testName = "Удаление слова, не содержащегося в словаре", priority = 4, expectedExceptions = {NoSuchElementException.class})
@@ -45,11 +45,10 @@ public class DictionaryTest {
     public void removeContainedWordByValueTest(){
         addWordTest();
         dict.removeWord(word.getValue(Language.English), Language.English);
-        dict.getWord(word.getValue(Language.English), Language.English);
+        dict.getWord(word.getValue(Language.English));
     }
     @Test(testName = "Удаление слова, не содержащегося в словаре по значению", priority = 6, expectedExceptions = {NoSuchElementException.class})
     public void removeNotContainedWordByValueTest(){
-        addWordTest();
         dict.removeWord(notContainedWord.getValue(Language.English), Language.English);
     }
 
@@ -57,11 +56,13 @@ public class DictionaryTest {
     public void saveToFileTest() throws IOException {
         addWordTest();
         dict.saveToFile(filePath);
+        dict.removeWord(word);
     }
     @Test(testName = "Загрузка данных из файла", priority = 8)
     public void loadFromFileTest() throws IOException {
         addWordTest();
         Dictionary loadedDict = Dictionary.loadFromFile(filePath);
         assertEquals(loadedDict.toString(), dict.toString());
+        dict.removeWord(word);
     }
 }

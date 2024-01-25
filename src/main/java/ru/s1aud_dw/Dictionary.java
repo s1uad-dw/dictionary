@@ -22,7 +22,7 @@ public class Dictionary extends ArrayList<Word> {
         this.add(new Word(english, russian));
     }
 
-    public Word getWord(String word, Language language) throws NoSuchElementException {
+    public Word getWord(String word) throws NoSuchElementException {
         for (Word wordInDict : this) {
             if (Arrays.asList(wordInDict.getValues()).contains(word))
                 return wordInDict;
@@ -37,7 +37,7 @@ public class Dictionary extends ArrayList<Word> {
     }
 
     public void removeWord(String word, Language language) {
-        Word wordObj = this.getWord(word, language);
+        Word wordObj = this.getWord(word);
         this.removeWord(wordObj);
     }
 
