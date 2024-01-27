@@ -1,6 +1,5 @@
-package ru.s1aud_dw;
+package ru.s1uad_dw;
 
-import javax.imageio.IIOException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

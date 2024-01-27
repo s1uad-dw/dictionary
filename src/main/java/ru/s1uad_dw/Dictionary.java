@@ -1,4 +1,4 @@
-package ru.s1aud_dw;
+package ru.s1uad_dw;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

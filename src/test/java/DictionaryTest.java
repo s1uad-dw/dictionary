@@ -1,7 +1,7 @@
 import org.testng.annotations.Test;
-import ru.s1aud_dw.Dictionary;
-import ru.s1aud_dw.Language;
-import ru.s1aud_dw.Word;
+import ru.s1uad_dw.Dictionary;
+import ru.s1uad_dw.Language;
+import ru.s1uad_dw.Word;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
