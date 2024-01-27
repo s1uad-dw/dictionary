@@ -6,28 +6,28 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Word {
-    private String english;
-    private String russian;
+    private String language1;
+    private String language2;
 
     public Word() {}
-    public Word(String english, String russian) {
-        this.english = english;
-        this.russian = russian;
+    public Word(String language1, String language2) {
+        this.language1 = language1;
+        this.language2 = language2;
     }
     @JsonIgnore
     public String getValue(Language language) {
         return switch (language) {
-            case English -> english;
-            case Russian -> russian;
+            case language1 -> language1;
+            case language2 -> language2;
         };
     }
     @JsonIgnore
     public String[] getValues() {
-        return new String[]{english, russian};
+        return new String[]{language1, language2};
     }
 
     @Override
     public String toString(){
-        return english + " = " + russian;
+        return String.format("%-15s -> %-15s", language1, language2);
     }
 }

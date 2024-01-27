@@ -1,23 +1,42 @@
 package ru.s1aud_dw;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
-
-public class Dictionary extends ArrayList<Word> {
-    public void addWord(Word word) {
-        this.add(word);
+@Getter@Setter
+public class Dictionary{
+    @JsonProperty
+    private String title;
+    @JsonProperty
+    private ArrayList<Word> words = new ArrayList<>();
+    @JsonProperty
+    private String language1;
+    @JsonProperty
+    private String language2;
+    public Dictionary(){}
+    public Dictionary(String title, String language1, String language2){
+        this.title = title;
+        this.language1 = language1;
+        this.language2 = language2;
     }
 
-    public void addWord(String english, String russian) {
-        this.add(new Word(english, russian));
+    public void addWord(Word word) {
+        words.add(word);
+    }
+
+    public void addWord(String language1, String language2) {
+        words.add(new Word(language1, language2));
     }
 
     public Word getWord(String word) throws NoSuchElementException {
-        for (Word wordInDict : this) {
+        for (Word wordInDict : words) {
             if (Arrays.asList(wordInDict.getValues()).contains(word))
                 return wordInDict;
         }
@@ -25,7 +44,7 @@ public class Dictionary extends ArrayList<Word> {
     }
 
     public void removeWord(Word word) throws NoSuchElementException {
-        if (!this.remove(word)) {
+        if (!words.remove(word)) {
             throw new NoSuchElementException();
         }
     }
@@ -47,7 +66,7 @@ public class Dictionary extends ArrayList<Word> {
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
-        for(Word wordInDict : this){
+        for(Word wordInDict : words){
             string.append(wordInDict.toString()).append("\n");
         }
         return string.toString();
