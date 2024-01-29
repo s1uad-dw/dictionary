@@ -20,6 +20,10 @@ public class Dictionary{
     private String language1;
     @JsonProperty
     private String language2;
+    @JsonProperty
+    private Limitation limitationLanguage1 = new Limitation();
+    @JsonProperty
+    private Limitation limitationLanguage2 = new Limitation();
     public Dictionary(){}
     public Dictionary(String title, String language1, String language2){
         this.title = title;
